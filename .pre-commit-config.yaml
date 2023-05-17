@@ -1,0 +1,68 @@
+repos:
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: black
+        language: system
+        require_serial: true
+        types: [python]
+
+      - id: isort
+        name: isort
+        entry: isort
+        args: [--filter-files]
+        language: system
+        require_serial: true
+        types: [python]
+
+      - id: ruff
+        name: ruff
+        entry: ruff check
+        args: [--force-exclude]
+        language: system
+        require_serial: true
+        types_or: [python, pyi]
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        require_serial: true
+        types: [python]
+
+      - id: poetry-check
+        name: poetry-check
+        entry: poetry check
+        language: system
+        pass_filenames: false
+        files: ^pyproject.toml$
+
+      - id: poetry-check-lock
+        name: poetry-check-lock
+        entry: poetry lock --check
+        language: system
+        pass_filenames: false
+        files: ^pyproject.toml|poetry.lock$
+
+      - id: trailing-whitespace
+        name: trim trailing whitespace
+        entry: trailing-whitespace-fixer
+        language: system
+        types: [text]
+        stages: [commit, push, manual]
+
+      - id: end-of-file-fixer
+        name: fix end of files
+        entry: end-of-file-fixer
+        language: system
+        types: [text]
+        stages: [commit, push, manual]
+
+      - id: check-merge-conflict
+        name: check for merge conflicts
+        entry: check-merge-conflict
+        args: [--assume-in-merge]
+        language: system
+        types: [text]

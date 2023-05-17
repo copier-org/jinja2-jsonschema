@@ -1,0 +1,107 @@
+[tool.poetry]
+name = "jinja2-jsonschema"
+version = "0.0.0"
+description = "JSON/YAML schema validation within Jinja2 templates"
+license = "MIT"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+keywords = ["jinja", "jinja2", "extension", "jsonschema", "json", "yaml"]
+authors = ["Sigurd Spieckermann <sigurd.spieckermann@gmail.com>"]
+packages = [{ include = "jinja2_jsonschema", from = "src" }]
+readme = "README.md"
+homepage = "https://github.com/copier-org/jinja2-jsonschema"
+repository = "https://github.com/copier-org/jinja2-jsonschema"
+
+[tool.poetry.dependencies]
+python = ">=3.7.2"
+jinja2 = ">=3.0.0"
+jsonschema = ">=4.0.0"
+pyyaml = { version = ">=6.0.0", optional = true }
+
+[tool.poetry.extras]
+yaml = ["pyyaml"]
+
+[tool.poetry.group.dev.dependencies]
+black = ">=23.3.0"
+isort = ">=5.11.3"
+mypy = ">=1.3.0"
+pre-commit = ">=2.21.0"
+pre-commit-hooks = ">=4.4.0"
+pydocstyle = { version = ">=6.3.0", extras = ["toml"] }
+ruff = ">=0.0.267"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.3.1"
+pytest-cov = ">=4.0.0"
+
+[tool.poetry.group.typing.dependencies]
+types-jsonschema = ">=4.0.0"
+types-pyyaml = ">=6.0.0"
+typing-extensions = { version = ">=3.7.4", python = "<3.8" }
+
+[tool.black]
+target-version = ["py37"]
+
+[tool.isort]
+profile = "black"
+force_single_line = true
+
+[tool.ruff]
+line-length = 88
+ignore = ["D100", "D104", "D107"]
+select = [
+  "B",
+  "BLE",
+  "C4",
+  "D",
+  "E",
+  "F",
+  "ISC",
+  "N",
+  "PGH",
+  "PIE",
+  "PL",
+  "PT",
+  "PTH",
+  "Q",
+  "RET",
+  "SIM",
+  "T20",
+  "TCH",
+  "TID",
+  "TRY",
+  "UP",
+  "W",
+]
+target-version = "py37"
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.pylint]
+max-args = 7
+
+[tool.mypy]
+strict = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report=term-missing"
+
+[tool.coverage.run]
+source_pkgs = ["jinja2_jsonschema"]
+omit = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
