@@ -80,8 +80,8 @@ def serialize(
 def create_env(templates_root: Optional[Path] = None) -> Environment:
     """Create a new Jinja2 test environment.
 
-    The Jinja2 environment is pre-configured the JSON Schema extension and an
-    optional filesystem loader.
+    The Jinja2 environment is pre-configured with the JSON Schema extension and
+    an optional filesystem loader.
 
     Args:
         templates_root:
