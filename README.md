@@ -64,7 +64,7 @@ env = Environment(
     # Register a loader (only necessary when using local schema files).
     loader=FileSystemLoader("/path/to/templates"),
     # Register the extension.
-    extensions=['jinja2_jsonschema.JsonSchemaExtension'],
+    extensions=["jinja2_jsonschema.JsonSchemaExtension"],
 )
 
 # Example using an inline schema object.
