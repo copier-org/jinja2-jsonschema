@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jinja2-jsonschema"
-version = "0.0.0"
+version = "0.1.0"
 description = "JSON/YAML schema validation within Jinja2 templates"
 license = "MIT"
 classifiers = [
