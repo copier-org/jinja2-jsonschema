@@ -87,7 +87,7 @@ template.render(age=-1)  # ERROR
 
 Contributions are always welcome via filing [issues](https://github.com/copier-org/jinja2-jsonschema/issues) or submitting [pull requests](https://github.com/copier-org/jinja2-jsonschema/pulls). Please check the [contribution guide][contribution-guide] for more details.
 
-[contribution-guide]: https://https://github.com/copier-org/jinja2-jsonschema/blob/main/CONTRIBUTING.md
+[contribution-guide]: https://github.com/copier-org/jinja2-jsonschema/blob/main/CONTRIBUTING.md
 [jinja]: https://jinja.palletsprojects.com
 [jinja-extensions]: https://jinja.palletsprojects.com/en/latest/extensions/
 [jinja-filter]: https://jinja.palletsprojects.com/en/latest/templates/#filters
