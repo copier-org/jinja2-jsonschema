@@ -27,7 +27,7 @@ else:  # pragma: no cover
 __all__ = ["JsonSchemaExtension"]
 
 
-class JsonSchemaExtension(Extension):  # pylint: disable=abstract-method
+class JsonSchemaExtension(Extension):
     """Jinja2 extension for using JSON Schema within Jinja2 templates."""
 
     def __init__(self, environment: Environment) -> None:
@@ -125,7 +125,7 @@ class _JsonSchemaFilter:
     def _load(raw_schema: str) -> _Schema:
         schema: _Schema
         try:
-            import yaml  # pylint: disable=import-outside-toplevel
+            import yaml
         except ImportError:
             schema = json.loads(raw_schema)
         else:

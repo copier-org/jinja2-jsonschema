@@ -11,7 +11,7 @@ from jinja2_jsonschema import JsonSchemaExtension
 def test_filter_name_conflict() -> None:
     """Test the behavior when a filter name conflict occurs."""
 
-    class _TestExtension(Extension):  # pylint: disable=abstract-method
+    class _TestExtension(Extension):
         def __init__(self, environment: Environment) -> None:
             super().__init__(environment)
             environment.filters["jsonschema"] = self
