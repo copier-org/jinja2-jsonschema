@@ -4,7 +4,7 @@
 ![Python versions](https://img.shields.io/pypi/pyversions/jinja2-jsonschema?logo=python&logoColor=%23959DA5)
 [![PyPI](https://img.shields.io/pypi/v/jinja2-jsonschema?logo=pypi&logoColor=%23959DA5)](https://pypi.org/project/jinja2-jsonschema)
 [![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linter: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/charliermarsh/ruff)
+[![Linter: Ruff](https://img.shields.io/badge/-Ruff-261230.svg?labelColor=grey&logo=ruff&logoColor=D7FF64)](https://github.com/charliermarsh/ruff)
 [![Type-checker: mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org)
 
 A [Jinja2 extension][jinja-extensions] providing a [Jinja2 filter][jinja-filter] for validating data against a JSON/YAML schema within [Jinja2][jinja] templates.
