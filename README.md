@@ -83,11 +83,53 @@ template.render(age=30)  # OK
 template.render(age=-1)  # ERROR
 ```
 
+## Usage with Copier
+
+The extension integrates nicely with [Copier][copier], e.g. for validating complex JSON/YAML answers in the Copier questionnaire. For this, add the extension as a [Jinja2 extension in `copier.yml`][copier-jinja-extensions] and use the Jinja2 filter in the `validator` field of a Copier [question][copier-questions]. For instance:
+
+```yaml
+_jinja_extensions:
+  - jinja2_jsonschema.JsonSchemaExtension
+
+complex_question:
+  type: json # or `yaml`
+  validator: "{{ complex_question | jsonschema('schemas/complex.json') }}"
+```
+
+In this example, a local schema file `schemas/complex.json` is used whose path is relative to the template root. To prevent copying schema files to the generated project, they should be either [excluded][copier-exclude]
+
+```diff
++_exclude:
++  - schemas/
+ _jinja_extensions:
+   - jinja2_jsonschema.JsonSchemaExtension
+```
+
+or the project template should be located in a [subdirectory][copier-subdirectory] such as `template/`:
+
+```diff
++_subdirectory_: template
+ _jinja_extensions:
+   - jinja2_jsonschema.JsonSchemaExtension
+```
+
+Finally, template consumers need to install the extension along with Copier. For instance with `pipx`:
+
+```shell
+pipx install copier
+pipx inject copier jinja2-jsonschema
+```
+
 ## Contributions
 
 Contributions are always welcome via filing [issues](https://github.com/copier-org/jinja2-jsonschema/issues) or submitting [pull requests](https://github.com/copier-org/jinja2-jsonschema/pulls). Please check the [contribution guide][contribution-guide] for more details.
 
 [contribution-guide]: https://github.com/copier-org/jinja2-jsonschema/blob/main/CONTRIBUTING.md
+[copier]: https://github.com/copier-org/copier
+[copier-exclude]: https://copier.readthedocs.io/en/stable/configuring/#exclude
+[copier-jinja-extensions]: https://copier.readthedocs.io/en/stable/configuring/#jinja_extensions
+[copier-questions]: https://copier.readthedocs.io/en/stable/configuring/#questions
+[copier-subdirectory]: https://copier.readthedocs.io/en/stable/configuring/#subdirectory
 [jinja]: https://jinja.palletsprojects.com
 [jinja-extensions]: https://jinja.palletsprojects.com/en/latest/extensions/
 [jinja-filter]: https://jinja.palletsprojects.com/en/latest/templates/#filters
