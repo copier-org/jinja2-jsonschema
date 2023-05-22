@@ -6,13 +6,13 @@ from typing import Any
 import pytest
 
 from jinja2_jsonschema.errors import SchemaFileNotFoundError
+from tests.conftest import HTTPServerFactory
+from tests.utils import SCHEMA
+from tests.utils import build_file_tree
+from tests.utils import create_env
+from tests.utils import serialize
 
-from .conftest import HTTPServerFactory
-from .utils import SCHEMA
 from .utils import TEST_CASES
-from .utils import build_file_tree
-from .utils import create_env
-from .utils import serialize
 
 if sys.version_info >= (3, 8):  # pragma: no cover
     from typing import Literal
@@ -38,7 +38,7 @@ def test_basic(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema(url + '/schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema(url + '/schema.' + data_format) }}")
 
     output = tpl.render(data=data, url=url, data_format=data_format)
     assert output == message
@@ -77,7 +77,7 @@ def test_ref_with_relative_path(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema(url + '/schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema(url + '/schema.' + data_format) }}")
 
     output = tpl.render(data=data, url=url, data_format=data_format)
     assert output == message
@@ -104,7 +104,7 @@ def test_ref_with_absolute_path(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema(url + '/schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema(url + '/schema.' + data_format) }}")
 
     output = tpl.render(data=data, url=url, data_format=data_format)
     assert output == message
@@ -135,7 +135,7 @@ def test_ref_with_url(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema(url + '/schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema(url + '/schema.' + data_format) }}")
 
     output = tpl.render(data=data, url=url, data_format=data_format)
     assert output == message
@@ -180,7 +180,7 @@ def test_jsonpointer(
 
     env = create_env(tmp_path)
     tpl = env.from_string(
-        "{{ data | jsonschema(url + '/schema.' + data_format + '#' + pointer) }}"
+        "{{ data is jsonschema(url + '/schema.' + data_format + '#' + pointer) }}"
     )
 
     output = tpl.render(data=data, url=url, data_format=data_format, pointer=pointer)
@@ -218,7 +218,7 @@ def test_schema_not_found(
     url = http_server_factory(tmp_path / "root")
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema(url + '/' + schema_file) }}")
+    tpl = env.from_string("{{ data is jsonschema(url + '/' + schema_file) }}")
 
     with pytest.raises(SchemaFileNotFoundError, match=message):
         tpl.render(data={"age": 30}, url=url, schema_file=schema_file)

@@ -29,3 +29,25 @@ def test_filter_name_conflict() -> None:
         env = Environment(extensions=[_TestExtension, JsonSchemaExtension])
 
     assert env.filters["jsonschema"] == _fake_filter
+
+
+def test_test_name_conflict() -> None:
+    """Test the behavior when a test name conflict occurs."""
+
+    def _fake_test(data: Any) -> bool:
+        return True
+
+    class _TestExtension(Extension):
+        def __init__(self, environment: Environment) -> None:
+            super().__init__(environment)
+            environment.tests["jsonschema"] = _fake_test
+
+    with pytest.warns(
+        RuntimeWarning,
+        match=escape(
+            'A test named "jsonschema" already exists in the Jinja2 environment'
+        ),
+    ):
+        env = Environment(extensions=[_TestExtension, JsonSchemaExtension])
+
+    assert env.tests["jsonschema"] == _fake_test
