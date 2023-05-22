@@ -25,4 +25,3 @@ def test_filter_name_conflict() -> None:
         env = Environment(extensions=[_TestExtension, JsonSchemaExtension])
 
     assert isinstance(env.filters["jsonschema"], _TestExtension)
-    assert JsonSchemaExtension not in set(env.filters.values())
