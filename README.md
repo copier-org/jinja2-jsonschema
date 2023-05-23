@@ -1,7 +1,7 @@
 # JSON Schema Validation within Jinja2 Templates
 
 [![Tests](https://img.shields.io/github/actions/workflow/status/copier-org/jinja2-jsonschema/tests.yml?branch=main&label=Tests&labelColor=333&logo=github&style=flat-square)](https://github.com/copier-org/jinja2-jsonschema/actions?query=branch%3Amain)
-![Python versions](https://img.shields.io/pypi/pyversions/jinja2-jsonschema?label=Python&logo=python&logoColor=%23959DA5&style=flat-square)
+[![Python versions](https://img.shields.io/pypi/pyversions/jinja2-jsonschema?label=Python&logo=python&logoColor=%23959DA5&style=flat-square)](https://pypi.org/project/jinja2-jsonschema)
 [![PyPI](https://img.shields.io/pypi/v/jinja2-jsonschema?label=PyPI&logo=pypi&logoColor=%23959DA5&style=flat-square)](https://pypi.org/project/jinja2-jsonschema)
 [![Code style: Black](https://img.shields.io/badge/Code%20Style-Black-000000.svg?style=flat-square)](https://github.com/psf/black)
 [![Linter: Ruff](https://img.shields.io/badge/-Ruff-261230.svg?labelColor=grey&logo=ruff&logoColor=D7FF64&style=flat-square)](https://github.com/charliermarsh/ruff)
