@@ -6,7 +6,6 @@ from textwrap import dedent
 from typing import Any
 from typing import Mapping
 from typing import Optional
-from typing import cast
 
 import yaml
 from jinja2 import Environment
@@ -50,7 +49,7 @@ def serialize(
     return (
         json.dumps(data, indent=indent)
         if data_format == "json"
-        else cast(str, yaml.safe_dump(data, indent=indent))
+        else yaml.safe_dump(data, indent=indent)
     )
 
 

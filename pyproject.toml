@@ -47,7 +47,7 @@ pytest-cov = ">=4.0.0"
 
 [tool.poetry.group.typing.dependencies]
 types-jsonschema = ">=4.0.0"
-types-pyyaml = ">=6.0.0"
+types-pyyaml = ">=6.0.12.10"
 typing-extensions = { version = ">=3.7.4", python = "<3.8" }
 
 [tool.black]
