@@ -1,11 +1,11 @@
 # JSON Schema Validation within Jinja2 Templates
 
-[![CI](https://github.com/copier-org/jinja2-jsonschema/workflows/tests/badge.svg)](https://github.com/copier-org/jinja2-jsonschema/actions?query=branch%3Amain)
-![Python versions](https://img.shields.io/pypi/pyversions/jinja2-jsonschema?logo=python&logoColor=%23959DA5)
-[![PyPI](https://img.shields.io/pypi/v/jinja2-jsonschema?logo=pypi&logoColor=%23959DA5)](https://pypi.org/project/jinja2-jsonschema)
-[![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linter: Ruff](https://img.shields.io/badge/-Ruff-261230.svg?labelColor=grey&logo=ruff&logoColor=D7FF64)](https://github.com/charliermarsh/ruff)
-[![Type-checker: mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org)
+[![CI](https://img.shields.io/github/actions/workflow/status/copier-org/jinja2-jsonschema/tests.yml?branch=main&label=tests&labelColor=333&logo=github&style=flat-square)](https://github.com/copier-org/jinja2-jsonschema/actions?query=branch%3Amain)
+![Python versions](https://img.shields.io/pypi/pyversions/jinja2-jsonschema?logo=python&logoColor=%23959DA5&style=flat-square)
+[![PyPI](https://img.shields.io/pypi/v/jinja2-jsonschema?logo=pypi&logoColor=%23959DA5&style=flat-square)](https://pypi.org/project/jinja2-jsonschema)
+[![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
+[![Linter: Ruff](https://img.shields.io/badge/-Ruff-261230.svg?labelColor=grey&logo=ruff&logoColor=D7FF64&style=flat-square)](https://github.com/charliermarsh/ruff)
+[![Type-checker: mypy](https://img.shields.io/badge/mypy-checked-2A6DB2.svg?style=flat-square)](http://mypy-lang.org)
 
 A [Jinja2 extension][jinja-extensions] providing a [Jinja2 filter][jinja-filter] and a [Jinja2 test][jinja-test] for validating data against a JSON/YAML schema within [Jinja2][jinja] templates.
 
