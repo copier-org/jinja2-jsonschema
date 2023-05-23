@@ -7,7 +7,7 @@
 [![Linter: Ruff](https://img.shields.io/badge/-Ruff-261230.svg?labelColor=grey&logo=ruff&logoColor=D7FF64)](https://github.com/charliermarsh/ruff)
 [![Type-checker: mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org)
 
-A [Jinja2 extension][jinja-extensions] providing a [Jinja2 filter][jinja-filter] for validating data against a JSON/YAML schema within [Jinja2][jinja] templates.
+A [Jinja2 extension][jinja-extensions] providing a [Jinja2 filter][jinja-filter] and a [Jinja2 test][jinja-test] for validating data against a JSON/YAML schema within [Jinja2][jinja] templates.
 
 ## Installation
 
@@ -49,11 +49,16 @@ A [Jinja2 extension][jinja-extensions] providing a [Jinja2 filter][jinja-filter]
 
 ## Usage
 
-The extension provides a Jinja2 filter which receives a schema file path or schema object as input and returns a [`jsonschema.ValidationError`][python-jsonschema-validationerror] object when validation fails and an empty string (`""`) otherwise. The [JSON Schema dialect][jsonschema-dialect] is inferred from the `$schema` field in the JSON Schema document and, when omitted, defaults to the [latest dialect supported by the installed `jsonschema` library][python-jsonschema-features]. Both local and remote schemas are supported including [schema references][jsonschema-ref] and [JSON Pointers][jsonschema-jsonpointer].
+The extension provides:
+
+* A Jinja2 filter which receives a schema file path or schema object as input and returns a [`jsonschema.ValidationError`][python-jsonschema-validationerror] object when validation fails and an empty string (`""`) otherwise.
+* A Jinja2 test which receives a schema file path or schema object as input and returns `False` when validation fails and `True` otherwise.
+
+The [JSON Schema dialect][jsonschema-dialect] is inferred from the `$schema` field in the JSON Schema document and, when omitted, defaults to the [latest dialect supported by the installed `jsonschema` library][python-jsonschema-features]. Both local and remote schemas are supported including [schema references][jsonschema-ref] and [JSON Pointers][jsonschema-jsonpointer].
 
 Local schema files are loaded via a [Jinja2 loader](https://jinja.palletsprojects.com/en/latest/api/#loaders) in which case configuring the Jinja2 environment with a loader is mandatory.
 
-Some example usage of the JSON Schema validation filter is this:
+Some example usage of the JSON Schema validation filter and test is this:
 
 ```python
 from jinja2 import Environment
@@ -71,16 +76,25 @@ env = Environment(
 template = env.from_string("{{ age | jsonschema({'type': 'integer', 'minimum': 0}) }}")
 template.render(age=30)  # OK
 template.render(age=-1)  # ERROR
+template = env.from_string("{{ age is jsonschema({'type': 'integer', 'minimum': 0}) }}")
+template.render(age=30)  # --> `True`
+template.render(age=-1)  # --> `False`
 
 # Example using a local schema file.
 template = env.from_string("{{ age | jsonschema('age.json') }}")
 template.render(age=30)  # OK
 template.render(age=-1)  # ERROR
+template = env.from_string("{{ age is jsonschema('age.json') }}")
+template.render(age=30)  # --> `True`
+template.render(age=-1)  # --> `False`
 
 # Example using a remote schema file.
 template = env.from_string("{{ age | jsonschema('https://example.com/age.json') }}")
 template.render(age=30)  # OK
 template.render(age=-1)  # ERROR
+template = env.from_string("{{ age is jsonschema('https://example.com/age.json') }}")
+template.render(age=30)  # --> `True`
+template.render(age=-1)  # --> `False`
 ```
 
 ## Usage with Copier
@@ -133,6 +147,7 @@ Contributions are always welcome via filing [issues](https://github.com/copier-o
 [jinja]: https://jinja.palletsprojects.com
 [jinja-extensions]: https://jinja.palletsprojects.com/en/latest/extensions/
 [jinja-filter]: https://jinja.palletsprojects.com/en/latest/templates/#filters
+[jinja-test]: https://jinja.palletsprojects.com/en/latest/templates/#tests
 [jsonschema]: https://json-schema.org
 [jsonschema-dialect]: https://json-schema.org/understanding-json-schema/reference/schema.html#schema
 [jsonschema-ref]: https://json-schema.org/understanding-json-schema/structuring.html#ref

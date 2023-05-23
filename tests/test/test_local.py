@@ -9,12 +9,12 @@ from jinja2 import Environment
 from jinja2_jsonschema import JsonSchemaExtension
 from jinja2_jsonschema.errors import LoaderNotFoundError
 from jinja2_jsonschema.errors import SchemaFileNotFoundError
+from tests.utils import SCHEMA
+from tests.utils import build_file_tree
+from tests.utils import create_env
+from tests.utils import serialize
 
-from .utils import SCHEMA
 from .utils import TEST_CASES
-from .utils import build_file_tree
-from .utils import create_env
-from .utils import serialize
 
 if sys.version_info >= (3, 8):  # pragma: no cover
     from typing import Literal
@@ -35,7 +35,7 @@ def test_basic(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema('schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema('schema.' + data_format) }}")
 
     output = tpl.render(data=data, data_format=data_format)
     assert output == message
@@ -72,7 +72,7 @@ def test_ref_with_relative_path(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema('schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema('schema.' + data_format) }}")
 
     output = tpl.render(data=data, data_format=data_format)
     assert output == message
@@ -94,7 +94,7 @@ def test_ref_with_absolute_path(
     )
 
     env = create_env(tmp_path)
-    tpl = env.from_string("{{ data | jsonschema('/schema.' + data_format) }}")
+    tpl = env.from_string("{{ data is jsonschema('/schema.' + data_format) }}")
 
     output = tpl.render(data=data, data_format=data_format)
     assert output == message
@@ -137,7 +137,7 @@ def test_jsonpointer(
 
     env = create_env(tmp_path)
     tpl = env.from_string(
-        "{{ data | jsonschema('schema.' + data_format + '#' + pointer) }}"
+        "{{ data is jsonschema('schema.' + data_format + '#' + pointer) }}"
     )
 
     output = tpl.render(data=data, data_format=data_format, pointer=pointer)
@@ -169,7 +169,7 @@ def test_schema_not_found(tmp_path: Path, schema_file: str, message: str) -> Non
     )
 
     env = create_env(tmp_path / "root")
-    tpl = env.from_string("{{ data | jsonschema(schema_file) }}")
+    tpl = env.from_string("{{ data is jsonschema(schema_file) }}")
 
     with pytest.raises(SchemaFileNotFoundError, match=message):
         tpl.render(data={"age": 30}, schema_file=schema_file)
@@ -184,7 +184,7 @@ def test_loader_not_found(tmp_path: Path) -> None:
     )
 
     env = Environment(loader=None, extensions=[JsonSchemaExtension])
-    tpl = env.from_string("{{ data | jsonschema('schema.json') }}")
+    tpl = env.from_string("{{ data is jsonschema('schema.json') }}")
 
     with pytest.raises(LoaderNotFoundError):
         tpl.render(data={"age": 30})

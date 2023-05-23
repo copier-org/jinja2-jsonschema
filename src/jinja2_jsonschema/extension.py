@@ -32,6 +32,9 @@ class JsonSchemaExtension(Extension):
 
     def __init__(self, environment: Environment) -> None:
         super().__init__(environment)
+
+        jsonschema_filter = _JsonSchemaFilter(environment)
+
         if "jsonschema" in environment.filters:
             warn(
                 'A filter named "jsonschema" already exists in the Jinja2 environment',
@@ -39,7 +42,19 @@ class JsonSchemaExtension(Extension):
                 stacklevel=2,
             )
         else:
-            environment.filters["jsonschema"] = _JsonSchemaFilter(environment)
+            environment.filters["jsonschema"] = jsonschema_filter
+
+        def jsonschema_test(data: Any, schema: Union[str, _Schema]) -> bool:
+            return not jsonschema_filter(data, schema)
+
+        if "jsonschema" in environment.tests:
+            warn(
+                'A test named "jsonschema" already exists in the Jinja2 environment',
+                category=RuntimeWarning,
+                stacklevel=2,
+            )
+        else:
+            environment.tests["jsonschema"] = jsonschema_test
 
 
 _Schema = Mapping[str, Any]
