@@ -992,4 +992,4 @@ yaml = ["pyyaml"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7.2"
-content-hash = "4bb43d65036fc35fdb4d943f9e467d6bb0e5bc159ff07f44ba094c8c7290bd96"
+content-hash = "acfd4d104fdd3929a9ba38add57f382f4ce899771b70de6374f713395d91839e"
