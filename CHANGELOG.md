@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog], and this project adheres to [Semantic Versioning][semver].
 
+## [Unreleased]
+
+### Fixed
+
+- Make `typing-extensions` a runtime dependency to fix Python 3.7 usage as some `typing` backports were imported from `typing-extensions`. Python 3.8+ was not affected.
+
 ## [0.2.0] – 2023-05-23
 
 ### Added
@@ -23,5 +29,6 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 [keepachangelog]: https://keepachangelog.com/en/1.0.0
 [semver]: https://semver.org/spec/v2.0.0.html
 
+[unreleased]: https://github.com/copier-org/jinja2-jsonschema/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/copier-org/jinja2-jsonschema/releases/tag/v0.2.0
 [0.1.0]: https://github.com/copier-org/jinja2-jsonschema/releases/tag/v0.1.0
