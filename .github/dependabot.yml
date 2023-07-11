@@ -9,14 +9,3 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    allow:
-      - dependency-type: all
-    versioning-strategy: lockfile-only
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    allow:
-      - dependency-type: development
-    versioning-strategy: increase
