@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ### Fixed
 
-- Make `typing-extensions` a runtime dependency to fix Python 3.7 usage as some `typing` backports were imported from `typing-extensions`. Python 3.8+ was not affected.
+- Make `typing-extensions` a runtime dependency to fix Python 3.7 usage as some `typing` backports are imported from `typing-extensions`. Python 3.8+ was not affected.
 
 ## [0.2.0] – 2023-05-23
 
