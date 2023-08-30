@@ -23,7 +23,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Bootstrap Poetry
-        run: curl -sSL https://install.python-poetry.org | python - -y
+        run: curl -sSL https://install.python-poetry.org | python - -y --version 1.5.1
 
       - name: Build project for distribution
         run: poetry build
