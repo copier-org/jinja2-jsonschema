@@ -40,7 +40,7 @@ mypy = ">=1.3.0"
 pre-commit = ">=2.21.0"
 pre-commit-hooks = ">=4.4.0"
 pydocstyle = { version = ">=6.3.0", extras = ["toml"] }
-ruff = ">=0.0.267"
+ruff = ">=0.2.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=7.3.1"
@@ -58,7 +58,11 @@ profile = "black"
 force_single_line = true
 
 [tool.ruff]
+src = ["src"]
 line-length = 88
+target-version = "py37"
+
+[tool.ruff.lint]
 ignore = ["D100", "D104", "D107"]
 select = [
   "B",
@@ -84,12 +88,11 @@ select = [
   "UP",
   "W",
 ]
-target-version = "py37"
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.pylint]
+[tool.ruff.lint.pylint]
 max-args = 7
 
 [tool.mypy]
