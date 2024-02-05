@@ -2,7 +2,6 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "charliermarsh.ruff",
-    "ms-python.black-formatter",
     "ms-python.python"
   ]
 }

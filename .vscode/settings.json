@@ -1,5 +1,4 @@
 {
-  "editor.formatOnSave": true,
   "python.formatting.provider": "none",
   "python.linting.flake8Enabled": false,
   "python.linting.mypyEnabled": true,
@@ -8,7 +7,10 @@
   "python.testing.pytestEnabled": true,
   "[python]": {
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file",
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
   }
 }

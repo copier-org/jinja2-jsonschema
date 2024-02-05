@@ -1,25 +1,19 @@
 repos:
   - repo: local
     hooks:
-      - id: black
-        name: black
-        entry: black
-        language: system
-        require_serial: true
-        types: [python]
-
-      - id: isort
-        name: isort
-        entry: isort
-        args: [--filter-files]
-        language: system
-        require_serial: true
-        types: [python]
-
-      - id: ruff
-        name: ruff
-        entry: ruff check
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format
         args: [--force-exclude]
+        language: system
+        require_serial: true
+        types_or: [python, pyi]
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: ruff-check
+        name: ruff lint
+        entry: ruff check
+        args: [--force-exclude, --fix]
         language: system
         require_serial: true
         types_or: [python, pyi]
