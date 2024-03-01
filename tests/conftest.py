@@ -1,4 +1,5 @@
 """Test configuration."""
+
 from contextlib import closing
 from functools import partial
 from http.server import SimpleHTTPRequestHandler

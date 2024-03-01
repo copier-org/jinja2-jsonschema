@@ -1,4 +1,5 @@
 """Testing utilities."""
+
 from textwrap import dedent
 from typing import Any
 from typing import Sequence

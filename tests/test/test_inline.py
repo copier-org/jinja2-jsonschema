@@ -1,4 +1,5 @@
 """Tests for using inline schemas."""
+
 from typing import Any
 
 import pytest
