@@ -1,4 +1,5 @@
 """Jinja2 extension."""
+
 import json
 import sys
 from http import HTTPStatus

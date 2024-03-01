@@ -1,4 +1,5 @@
 """Tests for using remote schema files."""
+
 import sys
 from pathlib import Path
 from typing import Any
