@@ -34,7 +34,7 @@ def get_unused_tcp_port() -> int:
 HTTPServerFactory = Callable[[Path], str]
 
 
-@pytest.fixture()
+@pytest.fixture
 def http_server_factory() -> Iterator[HTTPServerFactory]:
     """A pytest fixture for a local HTTP server factory.
 
