@@ -8,7 +8,7 @@ Contributions are always welcome and appreciated!
 
 * A GitHub account.
 
-* A Python interpreter, ideally Python 3.8 (the minimum supported version by this project).
+* A Python interpreter, ideally Python 3.9 (the minimum supported version by this project).
 
 * The [Poetry][poetry-setup] package and dependency manager. We recommend configuring Poetry to create a new virtual environment inside the project's root directory in `.venv/`:
 

@@ -10,7 +10,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -23,7 +22,7 @@ homepage = "https://github.com/copier-org/jinja2-jsonschema"
 repository = "https://github.com/copier-org/jinja2-jsonschema"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9"
 jinja2 = ">=3.0.0"
 jsonschema = ">=4.0.0"
 pyyaml = { version = ">=6.0.0", optional = true }
