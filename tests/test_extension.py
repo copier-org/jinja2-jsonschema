@@ -1,5 +1,7 @@
 """Tests for adding the extension to the Jinja2 environment."""
 
+from __future__ import annotations
+
 from re import escape
 from typing import Any
 

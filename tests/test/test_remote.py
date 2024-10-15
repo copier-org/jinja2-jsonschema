@@ -1,19 +1,25 @@
 """Tests for using remote schema files."""
 
-from pathlib import Path
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
 
 import pytest
 
 from jinja2_jsonschema.errors import SchemaFileNotFoundError
-from tests.conftest import HTTPServerFactory
 from tests.utils import SCHEMA
 from tests.utils import build_file_tree
 from tests.utils import create_env
 from tests.utils import serialize
 
 from .utils import TEST_CASES
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from tests.conftest import HTTPServerFactory
 
 
 @pytest.mark.parametrize(("data", "message"), TEST_CASES)

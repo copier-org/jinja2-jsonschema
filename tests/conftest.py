@@ -1,5 +1,7 @@
 """Test configuration."""
 
+from __future__ import annotations
+
 from contextlib import closing
 from functools import partial
 from http.server import SimpleHTTPRequestHandler
@@ -11,7 +13,6 @@ from threading import Thread
 from time import sleep
 from typing import Callable
 from typing import Iterator
-from typing import List
 from typing import cast
 from urllib.error import URLError
 from urllib.request import Request
@@ -42,7 +43,7 @@ def http_server_factory() -> Iterator[HTTPServerFactory]:
         The HTTP server factory.
     """
     server_host = "127.0.0.1"
-    server_disposers: List[Callable[[], None]] = []
+    server_disposers: list[Callable[[], None]] = []
 
     def create(directory: Path) -> str:
         server_port = get_unused_tcp_port()
