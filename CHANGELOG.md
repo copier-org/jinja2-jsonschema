@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+### Added
+
+- Add support for Python 3.12 and 3.13.
+
 ### Changed
 
 - Drop support for Python 3.7 and 3.8.
