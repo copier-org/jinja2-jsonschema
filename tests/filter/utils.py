@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Sequence
 
-from pychoir import Matchable
 from pychoir import MatchesRegex
+
+if TYPE_CHECKING:
+    from pychoir import Matchable
 
 TEST_CASES: Sequence[tuple[Any, Matchable]] = [
     (
@@ -25,7 +28,7 @@ TEST_CASES: Sequence[tuple[Any, Matchable]] = [
             r"\s+"
             r"On instance\['age'\]:"
             r"\s+"
-            r"-1"
+            r"-1",
         ),
     ),
 ]

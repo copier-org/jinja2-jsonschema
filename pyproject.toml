@@ -55,31 +55,10 @@ target-version = "py37"
 
 [tool.ruff.lint]
 ignore = ["D100", "D104", "D107", "ISC001"]
-select = [
-  "B",
-  "BLE",
-  "C4",
-  "D",
-  "E",
-  "F",
-  "I",
-  "ISC",
-  "N",
-  "PGH",
-  "PIE",
-  "PL",
-  "PT",
-  "PTH",
-  "Q",
-  "RET",
-  "SIM",
-  "T20",
-  "TCH",
-  "TID",
-  "TRY",
-  "UP",
-  "W",
-]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true
 
 [tool.ruff.lint.isort]
 force-single-line = true
@@ -90,6 +69,9 @@ convention = "google"
 
 [tool.ruff.lint.pylint]
 max-args = 7
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN401", "ARG001", "S101", "S701"]
 
 [tool.mypy]
 implicit_reexport = true

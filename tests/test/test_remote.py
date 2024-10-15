@@ -36,7 +36,7 @@ def test_basic(
     build_file_tree(
         {
             (tmp_path / f"schema.{data_format}"): serialize(SCHEMA, data_format),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -62,20 +62,24 @@ def test_ref_with_relative_path(
     build_file_tree(
         {
             (tmp_path / "schema.yaml"): serialize(
-                {"$ref": f"{prefix}sub/sub/schema.json"}, "yaml"
+                {"$ref": f"{prefix}sub/sub/schema.json"},
+                "yaml",
             ),
             (tmp_path / "schema.json"): serialize(
-                {"$ref": f"{prefix}sub/schema.yaml"}, "json"
+                {"$ref": f"{prefix}sub/schema.yaml"},
+                "json",
             ),
             (tmp_path / "sub" / "sub" / "schema.yaml"): serialize(
-                {"$ref": f"{prefix}../schema.json"}, "yaml"
+                {"$ref": f"{prefix}../schema.json"},
+                "yaml",
             ),
             (tmp_path / "sub" / "sub" / "schema.json"): serialize(
-                {"$ref": f"{prefix}../schema.yaml"}, "json"
+                {"$ref": f"{prefix}../schema.yaml"},
+                "json",
             ),
             (tmp_path / "sub" / "schema.yaml"): serialize(SCHEMA, "yaml"),
             (tmp_path / "sub" / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -102,7 +106,7 @@ def test_ref_with_absolute_path(
             (tmp_path / "schema.json"): serialize({"$ref": "/sub/schema.yaml"}, "json"),
             (tmp_path / "sub" / "schema.yaml"): serialize(SCHEMA, "yaml"),
             (tmp_path / "sub" / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -126,14 +130,16 @@ def test_ref_with_url(
     build_file_tree(
         {
             (tmp_path / "schema.yaml"): serialize(
-                {"$ref": f"{url}/sub/schema.json"}, "yaml"
+                {"$ref": f"{url}/sub/schema.json"},
+                "yaml",
             ),
             (tmp_path / "schema.json"): serialize(
-                {"$ref": f"{url}/sub/schema.yaml"}, "json"
+                {"$ref": f"{url}/sub/schema.yaml"},
+                "json",
             ),
             (tmp_path / "sub" / "schema.yaml"): serialize(SCHEMA, "yaml"),
             (tmp_path / "sub" / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -165,7 +171,7 @@ def test_jsonpointer(
                         "personRef": {
                             "$ref": f"sub.{data_format}#/definitions/person",
                         },
-                    }
+                    },
                 },
                 data_format,
             ),
@@ -173,16 +179,16 @@ def test_jsonpointer(
                 {
                     "definitions": {
                         "person": SCHEMA,
-                    }
+                    },
                 },
                 data_format,
             ),
-        }
+        },
     )
 
     env = create_env(tmp_path)
     tpl = env.from_string(
-        "{{ data is jsonschema(url + '/schema.' + data_format + '#' + pointer) }}"
+        "{{ data is jsonschema(url + '/schema.' + data_format + '#' + pointer) }}",
     )
 
     output = tpl.render(data=data, url=url, data_format=data_format, pointer=pointer)
@@ -212,10 +218,11 @@ def test_schema_not_found(
     build_file_tree(
         {
             (tmp_path / "root" / "schema.json"): serialize(
-                {"$ref": "../inaccessible-schema.json"}, "json"
+                {"$ref": "../inaccessible-schema.json"},
+                "json",
             ),
             (tmp_path / "inaccessible-schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
     url = http_server_factory(tmp_path / "root")
 

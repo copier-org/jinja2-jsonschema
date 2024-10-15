@@ -26,13 +26,16 @@ if TYPE_CHECKING:
 @pytest.mark.parametrize(("data", "message"), TEST_CASES)
 @pytest.mark.parametrize("data_format", ["json", "yaml"])
 def test_basic(
-    tmp_path: Path, data_format: Literal["json", "yaml"], data: Any, message: str
+    tmp_path: Path,
+    data_format: Literal["json", "yaml"],
+    data: Any,
+    message: str,
 ) -> None:
     """Test basic validation."""
     build_file_tree(
         {
             (tmp_path / f"schema.{data_format}"): serialize(SCHEMA, data_format),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -56,20 +59,24 @@ def test_ref_with_relative_path(
     build_file_tree(
         {
             (tmp_path / "schema.yaml"): serialize(
-                {"$ref": f"{prefix}sub/sub/schema.json"}, "yaml"
+                {"$ref": f"{prefix}sub/sub/schema.json"},
+                "yaml",
             ),
             (tmp_path / "schema.json"): serialize(
-                {"$ref": f"{prefix}sub/sub/schema.yaml"}, "json"
+                {"$ref": f"{prefix}sub/sub/schema.yaml"},
+                "json",
             ),
             (tmp_path / "sub" / "sub" / "schema.yaml"): serialize(
-                {"$ref": f"{prefix}../schema.json"}, "yaml"
+                {"$ref": f"{prefix}../schema.json"},
+                "yaml",
             ),
             (tmp_path / "sub" / "sub" / "schema.json"): serialize(
-                {"$ref": f"{prefix}../schema.yaml"}, "json"
+                {"$ref": f"{prefix}../schema.yaml"},
+                "json",
             ),
             (tmp_path / "sub" / "schema.yaml"): serialize(SCHEMA, "yaml"),
             (tmp_path / "sub" / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -82,7 +89,10 @@ def test_ref_with_relative_path(
 @pytest.mark.parametrize(("data", "message"), TEST_CASES)
 @pytest.mark.parametrize("data_format", ["json", "yaml"])
 def test_ref_with_absolute_path(
-    tmp_path: Path, data_format: Literal["json", "yaml"], data: Any, message: str
+    tmp_path: Path,
+    data_format: Literal["json", "yaml"],
+    data: Any,
+    message: str,
 ) -> None:
     """Test local reference resolution with absolute paths."""
     build_file_tree(
@@ -91,7 +101,7 @@ def test_ref_with_absolute_path(
             (tmp_path / "schema.json"): serialize({"$ref": "/sub/schema.yaml"}, "json"),
             (tmp_path / "sub" / "schema.yaml"): serialize(SCHEMA, "yaml"),
             (tmp_path / "sub" / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path)
@@ -121,7 +131,7 @@ def test_jsonpointer(
                         "personRef": {
                             "$ref": f"sub.{data_format}#/definitions/person",
                         },
-                    }
+                    },
                 },
                 data_format,
             ),
@@ -129,16 +139,16 @@ def test_jsonpointer(
                 {
                     "definitions": {
                         "person": SCHEMA,
-                    }
+                    },
                 },
                 data_format,
             ),
-        }
+        },
     )
 
     env = create_env(tmp_path)
     tpl = env.from_string(
-        "{{ data | jsonschema('schema.' + data_format + '#' + pointer) }}"
+        "{{ data | jsonschema('schema.' + data_format + '#' + pointer) }}",
     )
 
     output = tpl.render(data=data, data_format=data_format, pointer=pointer)
@@ -163,10 +173,11 @@ def test_schema_not_found(tmp_path: Path, schema_file: str, message: str) -> Non
     build_file_tree(
         {
             (tmp_path / "root" / "schema.json"): serialize(
-                {"$ref": "../inaccessible-schema.json"}, "json"
+                {"$ref": "../inaccessible-schema.json"},
+                "json",
             ),
             (tmp_path / "inaccessible-schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = create_env(tmp_path / "root")
@@ -181,7 +192,7 @@ def test_loader_not_found(tmp_path: Path) -> None:
     build_file_tree(
         {
             (tmp_path / "schema.json"): serialize(SCHEMA, "json"),
-        }
+        },
     )
 
     env = Environment(loader=None, extensions=[JsonSchemaExtension])

@@ -26,7 +26,7 @@ def test_filter_name_conflict() -> None:
     with pytest.warns(
         RuntimeWarning,
         match=escape(
-            'A filter named "jsonschema" already exists in the Jinja2 environment'
+            'A filter named "jsonschema" already exists in the Jinja2 environment',
         ),
     ):
         env = Environment(extensions=[_TestExtension, JsonSchemaExtension])
@@ -48,7 +48,7 @@ def test_test_name_conflict() -> None:
     with pytest.warns(
         RuntimeWarning,
         match=escape(
-            'A test named "jsonschema" already exists in the Jinja2 environment'
+            'A test named "jsonschema" already exists in the Jinja2 environment',
         ),
     ):
         env = Environment(extensions=[_TestExtension, JsonSchemaExtension])
