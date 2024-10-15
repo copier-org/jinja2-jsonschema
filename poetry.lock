@@ -456,6 +456,17 @@ files = [
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
 
 [[package]]
+name = "pychoir"
+version = "0.0.27"
+description = "Test Matchers for humans"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "pychoir-0.0.27-py3-none-any.whl", hash = "sha256:b7161af5fcc563095cb67a20cee44ea3365ffd96d9ad335a8eadb1a60153e6b9"},
+    {file = "pychoir-0.0.27.tar.gz", hash = "sha256:cfad9c4615aacf91858f53d6ed16af9c404ec085de5c96c3950c1c70edfb4663"},
+]
+
+[[package]]
 name = "pydocstyle"
 version = "6.3.0"
 description = "Python docstring style checker"
@@ -890,4 +901,4 @@ yaml = ["pyyaml"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "d0437683dbc96b7ec2ba2e99f0c05dbeb485ac8157b8a0970c951548f2250556"
+content-hash = "8b549343fb4a460db6cd58d99805a8b3e35f908129d2132a3393a07ef39a2021"
