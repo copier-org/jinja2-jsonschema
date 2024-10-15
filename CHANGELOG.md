@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
-- Drop support for Python 3.7.
+### Changed
+
+- Drop support for Python 3.7 and 3.8.
 
 ## [0.2.1] – 2023-07-11
 
