@@ -7,7 +7,6 @@ from textwrap import dedent
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
-from typing import Mapping
 
 import yaml
 from jinja2 import Environment
@@ -16,6 +15,7 @@ from jinja2 import FileSystemLoader
 from jinja2_jsonschema import JsonSchemaExtension
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
     from pathlib import Path
 
 SCHEMA = {
