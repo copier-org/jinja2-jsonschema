@@ -1,18 +1,22 @@
 """Testing utilities."""
 
+from __future__ import annotations
+
 import json
-from pathlib import Path
 from textwrap import dedent
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
 from typing import Mapping
-from typing import Optional
 
 import yaml
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 from jinja2_jsonschema import JsonSchemaExtension
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -27,7 +31,7 @@ SCHEMA = {
 
 
 def serialize(
-    data: Any, data_format: Literal["json", "yaml"], indent: Optional[int] = None
+    data: Any, data_format: Literal["json", "yaml"], indent: int | None = None
 ) -> str:
     """Serialize data to a JSON or YAML string.
 
@@ -49,7 +53,7 @@ def serialize(
     )
 
 
-def create_env(templates_root: Optional[Path] = None) -> Environment:
+def create_env(templates_root: Path | None = None) -> Environment:
     """Create a new Jinja2 test environment.
 
     The Jinja2 environment is pre-configured with the JSON Schema extension and

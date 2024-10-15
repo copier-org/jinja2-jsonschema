@@ -1,5 +1,7 @@
 """Error classes."""
 
+from __future__ import annotations
+
 __all__ = [
     "JsonSchemaExtensionError",
     "LoaderNotFoundError",

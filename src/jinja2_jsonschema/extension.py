@@ -1,11 +1,12 @@
 """Jinja2 extension."""
 
+from __future__ import annotations
+
 import json
 from http import HTTPStatus
 from typing import Any
 from typing import Literal
 from typing import Mapping
-from typing import Union
 from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import urlopen
@@ -40,7 +41,7 @@ class JsonSchemaExtension(Extension):
         else:
             environment.filters["jsonschema"] = jsonschema_filter
 
-        def jsonschema_test(data: Any, schema: Union[str, _Schema]) -> bool:
+        def jsonschema_test(data: Any, schema: str | _Schema) -> bool:
             return not jsonschema_filter(data, schema)
 
         if "jsonschema" in environment.tests:
@@ -63,8 +64,8 @@ class _JsonSchemaFilter:
         self._environment = environment
 
     def __call__(
-        self, data: Any, schema: Union[str, _Schema]
-    ) -> Union[jsonschema.ValidationError, Literal[""]]:
+        self, data: Any, schema: str | _Schema
+    ) -> jsonschema.ValidationError | Literal[""]:
         """Validate data against a JSON Schema document.
 
         Args:

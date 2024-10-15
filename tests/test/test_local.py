@@ -1,6 +1,8 @@
 """Tests for using local schema files."""
 
-from pathlib import Path
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
 
@@ -16,6 +18,9 @@ from tests.utils import create_env
 from tests.utils import serialize
 
 from .utils import TEST_CASES
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 @pytest.mark.parametrize(("data", "message"), TEST_CASES)
