@@ -1,10 +1,10 @@
 """Testing utilities."""
 
 import json
-import sys
 from pathlib import Path
 from textwrap import dedent
 from typing import Any
+from typing import Literal
 from typing import Mapping
 from typing import Optional
 
@@ -13,11 +13,6 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 from jinja2_jsonschema import JsonSchemaExtension
-
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from typing import Literal
-else:  # pragma: no cover
-    from typing_extensions import Literal
 
 SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",

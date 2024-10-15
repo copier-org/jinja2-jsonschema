@@ -1,9 +1,9 @@
 """Jinja2 extension."""
 
 import json
-import sys
 from http import HTTPStatus
 from typing import Any
+from typing import Literal
 from typing import Mapping
 from typing import Union
 from urllib.error import HTTPError
@@ -19,11 +19,6 @@ from jinja2.ext import Extension
 from .errors import JsonSchemaExtensionError
 from .errors import LoaderNotFoundError
 from .errors import SchemaFileNotFoundError
-
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from typing import Literal
-else:  # pragma: no cover
-    from typing_extensions import Literal
 
 __all__ = ["JsonSchemaExtension"]
 

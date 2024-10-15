@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu, macOS, Windows]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         include:
           - os: Ubuntu
             image: ubuntu-latest
@@ -23,9 +23,6 @@ jobs:
             image: windows-latest
           - os: macOS
             image: macos-latest
-          - os: macOS
-            image: macos-12
-            python-version: "3.7"
       fail-fast: false
     defaults:
       run:
@@ -51,7 +48,7 @@ jobs:
         run: echo version=$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))") >> $GITHUB_OUTPUT
 
       - name: Bootstrap Poetry
-        run: curl -sSL https://install.python-poetry.org | python - -y --version 1.5.1
+        run: curl -sSL https://install.python-poetry.org | python - -y --version 1.8.3
 
       - name: Configure Poetry
         run: poetry config virtualenvs.in-project true

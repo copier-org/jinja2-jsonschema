@@ -1,8 +1,8 @@
 """Tests for using remote schema files."""
 
-import sys
 from pathlib import Path
 from typing import Any
+from typing import Literal
 
 import pytest
 
@@ -14,11 +14,6 @@ from tests.utils import create_env
 from tests.utils import serialize
 
 from .utils import TEST_CASES
-
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from typing import Literal
-else:  # pragma: no cover
-    from typing_extensions import Literal
 
 
 @pytest.mark.parametrize(("data", "message"), TEST_CASES)
