@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 from typing import Any
-from typing import Sequence
 
 from pychoir import MatchesRegex
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from pychoir import Matchable
 
 TEST_CASES: Sequence[tuple[Any, Matchable]] = [

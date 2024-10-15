@@ -11,14 +11,17 @@ from socket import socket
 from socketserver import TCPServer
 from threading import Thread
 from time import sleep
+from typing import TYPE_CHECKING
 from typing import Callable
-from typing import Iterator
 from typing import cast
 from urllib.error import URLError
 from urllib.request import Request
 from urllib.request import urlopen
 
 import pytest
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
 
 
 def get_unused_tcp_port() -> int:

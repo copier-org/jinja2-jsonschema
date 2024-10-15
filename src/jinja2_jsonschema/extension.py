@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 from http import HTTPStatus
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
-from typing import Mapping
 from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import urlopen

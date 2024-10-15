@@ -51,7 +51,7 @@ types-pyyaml = ">=6.0.12.10"
 [tool.ruff]
 src = ["src"]
 line-length = 88
-target-version = "py37"
+target-version = "py39"
 
 [tool.ruff.lint]
 ignore = ["D100", "D104", "D107", "ISC001"]
