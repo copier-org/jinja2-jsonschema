@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from http import HTTPStatus
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Literal
 from typing import Mapping
@@ -13,13 +14,16 @@ from urllib.request import urlopen
 from warnings import warn
 
 import jsonschema
-from jinja2 import Environment
 from jinja2 import TemplateNotFound
 from jinja2.ext import Extension
 
 from .errors import JsonSchemaExtensionError
 from .errors import LoaderNotFoundError
 from .errors import SchemaFileNotFoundError
+
+if TYPE_CHECKING:
+    from _typeshed import Incomplete
+    from jinja2 import Environment
 
 __all__ = ["JsonSchemaExtension"]
 
@@ -41,7 +45,7 @@ class JsonSchemaExtension(Extension):
         else:
             environment.filters["jsonschema"] = jsonschema_filter
 
-        def jsonschema_test(data: Any, schema: str | _Schema) -> bool:
+        def jsonschema_test(data: Any, schema: str | _Schema) -> bool:  # noqa: ANN401
             return not jsonschema_filter(data, schema)
 
         if "jsonschema" in environment.tests:
@@ -64,7 +68,9 @@ class _JsonSchemaFilter:
         self._environment = environment
 
     def __call__(
-        self, data: Any, schema: str | _Schema
+        self,
+        data: Any,  # noqa: ANN401
+        schema: str | _Schema,
     ) -> jsonschema.ValidationError | Literal[""]:
         """Validate data against a JSON Schema document.
 
@@ -109,23 +115,24 @@ class _JsonSchemaFilter:
 
         return ""
 
-    def _resolve_local_schema(self, uri: str) -> Any:
+    def _resolve_local_schema(self, uri: str) -> Incomplete:
         if not self._environment.loader:
-            raise LoaderNotFoundError()
+            raise LoaderNotFoundError
 
         schema_file = urlparse(uri).path
         try:
             raw_schema, *_ = self._environment.loader.get_source(
-                self._environment, schema_file
+                self._environment,
+                schema_file,
             )
         except TemplateNotFound as exc:
             raise SchemaFileNotFoundError(schema_file) from exc
 
         return self._load(raw_schema)
 
-    def _resolve_remote_schema(self, uri: str) -> Any:
+    def _resolve_remote_schema(self, uri: str) -> Incomplete:
         try:
-            with urlopen(uri) as response:
+            with urlopen(uri) as response:  # noqa: S310
                 raw_schema = response.read().decode("utf-8")
         except HTTPError as exc:
             if exc.code == HTTPStatus.NOT_FOUND:

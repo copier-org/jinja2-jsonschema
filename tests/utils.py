@@ -31,7 +31,9 @@ SCHEMA = {
 
 
 def serialize(
-    data: Any, data_format: Literal["json", "yaml"], indent: int | None = None
+    data: Any,
+    data_format: Literal["json", "yaml"],
+    indent: int | None = None,
 ) -> str:
     """Serialize data to a JSON or YAML string.
 

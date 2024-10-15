@@ -58,12 +58,12 @@ def http_server_factory() -> Iterator[HTTPServerFactory]:
         server_url = f"http://{server_host}:{server_port}"
 
         # Wait until the server has booted.
-        request = Request(server_url, method="HEAD")
+        request = Request(server_url, method="HEAD")  # noqa: S310
         while True:
             try:
-                with urlopen(request):
+                with urlopen(request):  # noqa: S310
                     pass
-            except URLError as exc:
+            except URLError as exc:  # noqa: PERF203
                 if isinstance(exc.reason, ConnectionRefusedError):
                     sleep(0.1)
                 else:
