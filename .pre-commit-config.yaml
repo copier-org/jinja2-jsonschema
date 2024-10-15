@@ -45,14 +45,14 @@ repos:
         entry: trailing-whitespace-fixer
         language: system
         types: [text]
-        stages: [commit, push, manual]
+        stages: [pre-commit, pre-push, manual]
 
       - id: end-of-file-fixer
         name: fix end of files
         entry: end-of-file-fixer
         language: system
         types: [text]
-        stages: [commit, push, manual]
+        stages: [pre-commit, pre-push, manual]
 
       - id: check-merge-conflict
         name: check for merge conflicts
