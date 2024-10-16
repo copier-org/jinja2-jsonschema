@@ -166,6 +166,7 @@ source = { editable = "." }
 dependencies = [
     { name = "jinja2" },
     { name = "jsonschema" },
+    { name = "referencing" },
 ]
 
 [package.optional-dependencies]
@@ -189,8 +190,9 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "jinja2", specifier = ">=3.0.0" },
-    { name = "jsonschema", specifier = ">=4.0.0" },
+    { name = "jsonschema", specifier = ">=4.18.0" },
     { name = "pyyaml", marker = "extra == 'yaml'", specifier = ">=6.0.0" },
+    { name = "referencing", specifier = ">=0.28.4" },
 ]
 
 [package.metadata.requires-dev]

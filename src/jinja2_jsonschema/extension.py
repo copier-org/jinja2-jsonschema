@@ -16,13 +16,16 @@ from warnings import warn
 import jsonschema
 from jinja2 import TemplateNotFound
 from jinja2.ext import Extension
+from referencing import Registry
+from referencing import Resource
+from referencing import Specification
+from referencing.exceptions import Unresolvable
 
 from .errors import JsonSchemaExtensionError
 from .errors import LoaderNotFoundError
 from .errors import SchemaFileNotFoundError
 
 if TYPE_CHECKING:
-    from _typeshed import Incomplete
     from jinja2 import Environment
 
 __all__ = ["JsonSchemaExtension"]
@@ -96,26 +99,28 @@ class _JsonSchemaFilter:
             jsonschema.validate(
                 data,
                 schema,
-                resolver=jsonschema.RefResolver(
-                    "",
-                    {},
-                    handlers={
-                        "file": self._resolve_local_schema,
-                        "http": self._resolve_remote_schema,
-                        "https": self._resolve_remote_schema,
-                    },
-                ),
+                registry=Registry(retrieve=self._resolve_schema),  # type: ignore[call-arg]
             )
-        except jsonschema.RefResolutionError as exc:
-            if isinstance(exc.__context__, JsonSchemaExtensionError):
-                raise exc.__context__ from None
+        except Unresolvable as exc:
+            _exc: BaseException = exc
+            while _exc.__context__:
+                if isinstance(_exc.__context__, JsonSchemaExtensionError):
+                    raise _exc.__context__ from None
+                _exc = _exc.__context__
             raise
         except jsonschema.ValidationError as exc:
             return exc
 
         return ""
 
-    def _resolve_local_schema(self, uri: str) -> Incomplete:
+    def _resolve_schema(self, uri: str) -> Resource[Any]:
+        if uri.startswith(("http://", "https://")):
+            return self._resolve_schema_from_remote(uri)
+        if uri.startswith("file://"):
+            return self._resolve_schema_from_local(uri)
+        raise SchemaFileNotFoundError(uri)
+
+    def _resolve_schema_from_local(self, uri: str) -> Resource[Any]:
         if not self._environment.loader:
             raise LoaderNotFoundError
 
@@ -130,7 +135,7 @@ class _JsonSchemaFilter:
 
         return self._load(raw_schema)
 
-    def _resolve_remote_schema(self, uri: str) -> Incomplete:
+    def _resolve_schema_from_remote(self, uri: str) -> Resource[Any]:
         try:
             with urlopen(uri) as response:  # noqa: S310
                 raw_schema = response.read().decode("utf-8")
@@ -141,7 +146,7 @@ class _JsonSchemaFilter:
         return self._load(raw_schema)
 
     @staticmethod
-    def _load(raw_schema: str) -> _Schema:
+    def _load(raw_schema: str) -> Resource[Any]:
         schema: _Schema
         try:
             import yaml
@@ -149,4 +154,7 @@ class _JsonSchemaFilter:
             schema = json.loads(raw_schema)
         else:
             schema = yaml.safe_load(raw_schema)
-        return schema
+        return Resource.from_contents(
+            schema,
+            default_specification=Specification.OPAQUE,
+        )
