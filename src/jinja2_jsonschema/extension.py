@@ -62,7 +62,7 @@ _Schema = Mapping[str, Any]
 
 
 class _JsonSchemaFilter:
-    """Jinja2 filter for validating data aginst a JSON Schema document."""
+    """Jinja2 filter for validating data against a JSON Schema document."""
 
     def __init__(self, environment: Environment) -> None:
         self._environment = environment
