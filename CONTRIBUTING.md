@@ -8,13 +8,7 @@ Contributions are always welcome and appreciated!
 
 * A GitHub account.
 
-* A Python interpreter, ideally Python 3.9 (the minimum supported version by this project).
-
-* The [Poetry][poetry-setup] package and dependency manager. We recommend configuring Poetry to create a new virtual environment inside the project's root directory in `.venv/`:
-
-    ```shell
-    poetry config virtualenvs.in-project true
-    ```
+* The [`uv`][uv-setup] package and dependency manager.
 
 * Create a [fork of this project][fork] in your personal namespace.
 
@@ -22,16 +16,22 @@ Contributions are always welcome and appreciated!
 
 1. Clone the fork to your local machine.
 
+1. Install the Python interpreter:
+
+    ```shell
+    uv python install
+    ```
+
 1. Install dependencies:
 
     ```shell
-    poetry install --all-extras
+    uv sync --frozen --all-extras
     ```
 
 1. Install pre-commit hooks:
 
     ```shell
-    poetry run pre-commit install
+    uv run pre-commit install
     ```
 
 ## Development
@@ -59,4 +59,4 @@ Contributions are always welcome and appreciated!
 [conventional-commits]: https://www.conventionalcommits.org
 [fork]: https://github.com/copier-org/jinja2-jsonschema/fork
 [git]: https://git-scm.com
-[poetry-setup]: https://python-poetry.org/docs/#installation
+[uv-setup]: https://docs.astral.sh/uv/getting-started/installation/
