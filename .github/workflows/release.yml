@@ -6,6 +6,7 @@ on:
       - published
 
 env:
+  # renovate: datasource=pypi depName=uv
   UV_VERSION: "0.4.22"
 
 jobs:
