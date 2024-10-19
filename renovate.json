@@ -9,6 +9,9 @@
     ":semanticCommitType(chore)",
     "regexManagers:githubActionsVersions"
   ],
+  "pyenv": {
+    "enabled": false
+  },
   "labels": ["dependencies"],
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
