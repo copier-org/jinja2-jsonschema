@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
 from http import HTTPStatus
 from typing import TYPE_CHECKING
 from typing import Any
@@ -26,9 +25,15 @@ from .errors import LoaderNotFoundError
 from .errors import SchemaFileNotFoundError
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from jinja2 import Environment
 
 __all__ = ["JsonSchemaExtension"]
+
+
+if TYPE_CHECKING:
+    _Schema = Mapping[str, Any]
 
 
 class JsonSchemaExtension(Extension):
@@ -59,9 +64,6 @@ class JsonSchemaExtension(Extension):
             )
         else:
             environment.tests["jsonschema"] = jsonschema_test
-
-
-_Schema = Mapping[str, Any]
 
 
 class _JsonSchemaFilter:
