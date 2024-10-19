@@ -17,5 +17,15 @@
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": "every 4 week between the 1 and 49 on Monday"
-  }
+  },
+  "packageRules": [
+    {
+      "matchCategories": ["python"],
+      "addLabels": ["python"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["github_actions"]
+    }
+  ]
 }
