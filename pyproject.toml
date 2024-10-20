@@ -36,7 +36,7 @@ yaml = ["pyyaml>=6.0.0"]
 [tool.uv]
 dev-dependencies = [
   # dev
-  "mypy==1.12.0",
+  "mypy==1.12.1",
   "pre-commit==4.0.1",
   "pre-commit-hooks==5.0.0",
   "ruff==0.7.0",
