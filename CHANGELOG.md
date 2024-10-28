@@ -12,8 +12,11 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ### Changed
 
-- Drop support for Python 3.7 and 3.8.
 - Refactor `$ref` resolution to to use the [`referencing`](https://referencing.readthedocs.io/en/stable/) library instead of the [deprecated `jsonschema.RefResolver` approach](https://github.com/python-jsonschema/jsonschema/releases/tag/v4.18.0).
+
+### Removed
+
+- Drop support for Python 3.7 and 3.8.
 
 ## [0.2.1] – 2023-07-11
 
