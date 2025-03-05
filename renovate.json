@@ -3,12 +3,14 @@
   "extends": [
     "config:recommended",
     ":prHourlyLimitNone",
-    "regexManagers:githubActionsVersions"
+    "customManagers:githubActionsVersions"
   ],
   "pyenv": {
     "enabled": false
   },
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
     "enabled": true,
@@ -16,12 +18,20 @@
   },
   "packageRules": [
     {
-      "matchCategories": ["python"],
-      "addLabels": ["python"]
+      "matchCategories": [
+        "python"
+      ],
+      "addLabels": [
+        "python"
+      ]
     },
     {
-      "matchManagers": ["github-actions"],
-      "addLabels": ["github_actions"]
+      "matchManagers": [
+        "github-actions"
+      ],
+      "addLabels": [
+        "github_actions"
+      ]
     }
   ]
 }
