@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended",
     ":prHourlyLimitNone",
-    "regexManagers:githubActionsVersions"
+    "customManagers:githubActionsVersions"
   ],
   "pyenv": {
     "enabled": false
