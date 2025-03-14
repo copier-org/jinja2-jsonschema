@@ -32,7 +32,7 @@ def get_unused_tcp_port() -> int:
     """
     with closing(socket(type=SOCK_STREAM)) as sock:
         sock.bind(("127.0.0.1", 0))
-        return cast(int, sock.getsockname()[1])
+        return cast("int", sock.getsockname()[1])
 
 
 HTTPServerFactory = Callable[[Path], str]
