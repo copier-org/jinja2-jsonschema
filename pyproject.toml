@@ -51,7 +51,8 @@ typing = [
 ]
 
 [tool.uv]
-default-groups = ["dev", "test", "typing"]
+required-version = ">=0.6.8"
+default-groups = "all"
 
 [tool.ruff]
 src = ["src"]
