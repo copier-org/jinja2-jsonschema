@@ -47,7 +47,7 @@ test = [
 ]
 typing = [
   "types-jsonschema==4.23.0.20241208",
-  "types-pyyaml==6.0.12.20241230"
+  "types-pyyaml==6.0.12.20250326"
 ]
 
 [tool.uv]
