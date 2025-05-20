@@ -210,7 +210,7 @@ dev = [
     { name = "ruff", specifier = "==0.11.10" },
 ]
 test = [
-    { name = "pychoir", specifier = "==0.0.27" },
+    { name = "pychoir", specifier = "==0.0.29" },
     { name = "pytest", specifier = "==8.3.5" },
     { name = "pytest-cov", specifier = "==6.1.1" },
 ]
@@ -434,11 +434,11 @@ wheels = [
 
 [[package]]
 name = "pychoir"
-version = "0.0.27"
+version = "0.0.29"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ff/3c/1616e0e234fbcbd8ba7ac9c63a85e98877dcbfb757b41add0408100f1fb4/pychoir-0.0.27.tar.gz", hash = "sha256:cfad9c4615aacf91858f53d6ed16af9c404ec085de5c96c3950c1c70edfb4663", size = 47328, upload-time = "2023-12-09T02:21:37.963Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c9/85/4912e9f73d2c78cd26b9d39fa698ebc5a83f5fb42f715c114b0dec32de06/pychoir-0.0.29.tar.gz", hash = "sha256:ba9fe43b7a760b0726caa76822635cc3ee4f2603e21bfbede78b9b054eef316b", size = 125644, upload-time = "2025-05-20T21:48:22.846Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ce/33/56b8ec5c56504fb2d7e2239990b5b8ff743643fda11ec3721f938b2dfa37/pychoir-0.0.27-py3-none-any.whl", hash = "sha256:b7161af5fcc563095cb67a20cee44ea3365ffd96d9ad335a8eadb1a60153e6b9", size = 18847, upload-time = "2023-12-09T02:21:35.493Z" },
+    { url = "https://files.pythonhosted.org/packages/1d/e9/acce36613397ecd227ab8998095aca2b17554bf65b42502b33769231c104/pychoir-0.0.29-py3-none-any.whl", hash = "sha256:608dc0fe0eb4c988b0725a8083272a03068a97e582e716d0956f4b02476c7961", size = 18528, upload-time = "2025-05-20T21:48:21.083Z" },
 ]
 
 [[package]]
