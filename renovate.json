@@ -10,8 +10,13 @@
     "enabled": false
   },
   "labels": ["dependencies"],
-  "rangeStrategy": "replace",
+  "rangeStrategy": "update-lockfile",
   "packageRules": [
+    {
+      "matchManagers": ["pep621"],
+      "matchDepTypes": ["dependency-groups"],
+      "rangeStrategy": "pin"
+    },
     {
       "matchCategories": ["python"],
       "addLabels": ["python"]
