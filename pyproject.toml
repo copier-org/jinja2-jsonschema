@@ -35,7 +35,7 @@ yaml = ["pyyaml>=6.0.0"]
 
 [dependency-groups]
 dev = [
-  "mypy==1.15.0",
+  "mypy==1.16.0",
   "pre-commit==4.2.0",
   "pre-commit-hooks==5.0.0",
   "ruff==0.11.11"
