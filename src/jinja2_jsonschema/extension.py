@@ -151,7 +151,7 @@ class _JsonSchemaFilter:
     def _load(raw_schema: str) -> Resource[Any]:
         schema: _Schema
         try:
-            import yaml
+            import yaml  # noqa: PLC0415
         except ImportError:
             schema = json.loads(raw_schema)
         else:
