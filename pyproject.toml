@@ -46,7 +46,7 @@ test = [
   "pytest-cov==6.2.1",
 ]
 typing = [
-  "types-jsonschema==4.24.0.20250528",
+  "types-jsonschema==4.24.0.20250708",
   "types-pyyaml==6.0.12.20250516"
 ]
 
