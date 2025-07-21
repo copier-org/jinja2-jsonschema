@@ -4,6 +4,7 @@
     "config:recommended",
     ":maintainLockFilesMonthly",
     ":prHourlyLimitNone",
+    ":semanticCommitTypeAll(chore)",
     "customManagers:githubActionsVersions"
   ],
   "pyenv": {
