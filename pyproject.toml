@@ -42,7 +42,7 @@ dev = [
 ]
 test = [
   "pychoir==0.0.29",
-  "pytest==8.4.1",
+  "pytest==8.4.2",
   "pytest-cov==6.2.1",
 ]
 typing = [
