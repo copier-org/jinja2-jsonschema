@@ -43,7 +43,7 @@ dev = [
 test = [
   "pychoir==0.0.29",
   "pytest==8.4.2",
-  "pytest-cov==6.3.0",
+  "pytest-cov==7.0.0",
 ]
 typing = [
   "types-jsonschema==4.25.1.20250822",
