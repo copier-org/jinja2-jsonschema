@@ -3,7 +3,7 @@ name = "jinja2-jsonschema"
 version = "0.3.0"
 description = "JSON/YAML schema validation within Jinja2 templates"
 license = { text = "MIT" }
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -11,7 +11,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -57,7 +56,7 @@ default-groups = "all"
 [tool.ruff]
 src = ["src"]
 line-length = 88
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 ignore = ["COM812", "D100", "D104", "D107", "ISC001"]

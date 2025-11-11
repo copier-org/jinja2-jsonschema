@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from contextlib import closing
 from functools import partial
 from http.server import SimpleHTTPRequestHandler
@@ -12,7 +13,6 @@ from socketserver import TCPServer
 from threading import Thread
 from time import sleep
 from typing import TYPE_CHECKING
-from typing import Callable
 from typing import cast
 from urllib.error import URLError
 from urllib.request import Request
