@@ -38,7 +38,7 @@ dev = [
   "mypy==1.18.2",
   "pre-commit==4.4.0",
   "pre-commit-hooks==6.0.0",
-  "ruff==0.14.5"
+  "ruff==0.14.6"
 ]
 test = [
   "pychoir==0.0.29",
