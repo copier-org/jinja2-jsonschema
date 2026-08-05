@@ -61,7 +61,7 @@ def http_server_factory() -> Iterator[HTTPServerFactory]:
         server_url = f"http://{server_host}:{server_port}"
 
         # Wait until the server has booted.
-        request = Request(server_url, method="HEAD")  # noqa: S310
+        request = Request(server_url, method="HEAD")
         while True:
             try:
                 with urlopen(request):  # noqa: S310
