@@ -66,7 +66,7 @@ def http_server_factory() -> Iterator[HTTPServerFactory]:
             try:
                 with urlopen(request):  # noqa: S310
                     pass
-            except URLError as exc:  # noqa: PERF203
+            except URLError as exc:
                 if isinstance(exc.reason, ConnectionRefusedError):
                     sleep(0.1)
                 else:
